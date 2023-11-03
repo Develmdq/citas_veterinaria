@@ -1,10 +1,25 @@
-import React from 'react';
-import {SafeAreaView, Text, ImageBackground} from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
+import globalStyles from './src/GlobalStyles/globalStyles';
+import Splash from './src/components/Splash/Splash';
+import Body from './src/components/Body/Body';
 
 const App = () => {
-  return <>
-    <Text>Hola</Text>
-  </>;
+  const [animated, setAnimated] = useState(true);
+
+  return (
+    <>
+      {animated ? (
+        <View style={globalStyles.container}>
+          <Splash onAnimationEnd={() => setAnimated(false)} />
+        </View>
+      ) : (
+        <View style={globalStyles.container}>
+          <Body />
+        </View>
+      )}
+    </>
+  );
 };
 
 export default App;
